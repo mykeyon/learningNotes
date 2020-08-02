@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app-5">
+    <div @click = "reverseMsg">翻转内容</div>
+    <span>{{ message }}</span>
+    <todo-list v-for = "item in todo" v-bind:todo="item"></todo-list>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  Vue.component('todo-list',{
+    props: ['todo'],
+    template: `<div>{{ todo }}</div>`
+  })
+  var app = new Vue({
+    el: "#app-5",
+    data: {
+      message: "hello world!",
+      todo:["狗娃", "狗剩", "狗蛋"]
+    },
+    methods: {
+      reverseMsg: function(){
+        this.message = this.message.split("").reverse().join("");
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="example">
+    <p>"{{ message }}"</p>
+    <p>翻转后的：{{ reverseMessage }}</p>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#example',
+    data: {
+      message: 'hello world!'
+    },
+    computed: {
+      reverseMessage: function(){
+        return this.message.split("").reverse().join("");
+      }
+      // reverseMessage: {
+      //   get: function(){
+      //     return this.message.split("").reverse().join("");
+      //   },
+      //   //set会报错，后续学习中再查看原因吧
+      //   set: function(value){
+      //     return value;
+      //   }
+
+      // }
+    }
+  })
+</script>
+</html>

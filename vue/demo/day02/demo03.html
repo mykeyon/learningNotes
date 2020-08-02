@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="example">
+    全名：{{ fullName }}
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  // var vm = new Vue({
+  //   el: "#example",
+  //   data: {
+  //     firstName: "张",
+  //     lastName: "狗娃",
+  //     fullName: "张狗娃"
+  //   },
+  //   watch: {
+  //     firstName: function(val){
+  //       this.fullName = val + this.lastName;
+  //     },
+  //     lastName: function(val){
+  //       this.fullName = this.firstName + val;
+  //     }
+  //   }
+  // })
+
+  var vm = new Vue({
+    el: "#example",
+    data: {
+      firstName: "李",
+      lastName: "铁蛋"
+    },
+    computed: {
+      // fullName: function(){
+      //   return this.firstName + this.lastName
+      // }
+      fullName: {
+        get: function(){
+          return this.firstName + this.lastName
+        },
+        set: function(val){
+          var arr = val.split(" ");
+          this.firstName = arr[0];
+          this.lastName = arr[1];
+        }
+      }
+    }
+  })
+</script>
+</html>
