@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-for = "(key, value) in items">{{ key }}---{{ value }}</div>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  var vmm = new Vue({
+    el: '#app',
+    data: {
+      items: {
+        title: '标题',
+        name: "狗娃",
+        age: 22
+      }
+    }
+  })
+</script>
+</html>

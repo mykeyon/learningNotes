@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .activeColor{
+    color: red;
+  }
+</style>
+<body>
+  <div id="example">
+    <div :class="{ activeColor: showFlag }" @click = "changeColor()">Hello world</div>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: "#example",
+    data: {
+      showFlag: true
+    },
+    methods: {
+      changeColor: function(){
+        this.showFlag = !this.showFlag
+      }
+    }
+  })
+</script>
+</html>
