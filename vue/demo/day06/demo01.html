@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <label for="love">你好vue</label>
+    <base-checkbox id = "love" v-model = "lovingVue"></base-checkbox>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  Vue.component('base-checkbox',{
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      checked: Boolean
+    },
+    template: `
+      <input
+        type = "checkbox"
+        v-bind:checked = "checked"
+        v-on:change="$emit('change', $event.target.checked)"
+      />
+    `
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      lovingVue: true
+    }
+  })
+</script>
+</html>

@@ -100,17 +100,72 @@ post: {
 ```
 
 ##### 单向数据流
+所有的prop都使得其父子prop直接形参了单向下行绑定：父级prop的更新会向下流动到子组件中，但是返回来则不行。
 
+##### Prop验证
+可以通过对象，来验证prop
+```js
+Vue.component('my-component', {
+  props: {
+    propA: Number,
+    propB: [String, Number],
+    //必填的字段
+    propC: {
+      type: String,
+      required: true
+    },
+    //带默认值的
+    prodD: {
+      type: Number,
+      default: 100
+    },
+    //带默认值的对象
+    propE: {
+      type: Object,
+      default: function(){
+        return { message: 'hello' }
+      }
+    },
+    //自定义验证函数
+    propF: {
+      volidator: function(value){
+        //这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    }
+  }
+})
+```
+当prop验证失败，(开发环境版本)Vue将产生一个控制台报错。
 
+> 注意这些prop会在组件实例创建之前进行验证，所以实例的property(如data，computed等)在default或validator函数中是不可用的。
 
+##### 类型检查
+type可以是下列原生构造函数中的一个：
+* String
+* Number
+* Boolean
+* Array
+* Object
+* Date
+* Function
+* Symbol
 
+额外的，type还可以是自定义的构造函数，并且通过instanceof来进行检查确认。例如：
+```js
+function Person(firstName, lastName){
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
 
+Vue.component('blog-post', {
+  props: {
+    author: Person
+  }
+})
+```
 
+##### 非Prop的Attribute
+一个非prop的attribute是指传向一个组件，但是该组件并没有相应的prop定义的attribute。
 
-
-
-
-
-
-
-1
+因为显式定义的prop适用于一个子组件传入信息，然而组件库的作者并不能预见组件被用于什么地方。这也是为什么组件可以接收任意的attribute，而这些attribute会被添加到这个组件的根元素上。
