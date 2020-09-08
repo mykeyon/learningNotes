@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>具名插槽</title>
+</head>
+<body>
+  <div id="app">
+    <base-layout>
+      <template v-slot:header>
+        <h1>Here might be a page title</h1>
+      </template>
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+      <template v-slot:footer>
+        <p>Here's some contact info.</p>
+      </template>
+      <h3>Hello world!!!</h3>
+    </base-layout>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  Vue.component('base-layout',{
+    template: `
+      <div class = "contanier">
+        <header>
+          <slot name = "header"></slot>  
+        </header>
+        <main>
+          <slot></slot>  
+        </main>
+        <footer>
+          <slot name = "footer"></slot>
+        </footer>
+      </div>
+    `
+  })
+  new Vue({
+    el: '#app'
+  })
+</script>
+</html>

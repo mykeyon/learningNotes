@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽传值</title>
+</head>
+<body>
+  <div id="app">
+    <current-user>
+      <template v-slot:default = "slotProps">{{ slotProps.user.firstName }}</template>
+    </current-user>
+  </div>
+</body>
+<script src="./../lib/vue.js"></script>
+<script>
+  Vue.component('current-user',{
+    data: function(){
+      return{
+        user: {
+          firstName: "狗娃",
+          lastName: "张"
+        }
+      }
+    },
+    template: `
+      <span>
+        <slot v-bind:user = "user">{{ user.lastName }}</slot>  
+      </span>
+    `
+  })
+  new Vue({
+    el: '#app',
+    data: {
+    }
+  })
+</script>
+</html>
