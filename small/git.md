@@ -136,7 +136,7 @@ node_modules
 *.md
 #但README.md除外
 !README.md
-# 胡忽略doc/something.txt但不会忽略doc/images/arch.txt
+# 忽略doc/something.txt但不会忽略doc/images/arch.txt
 doc/*.txt
 # 忽略doc/目录下所有扩展名为txt文件
 doc/**/*.txt
